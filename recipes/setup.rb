@@ -13,7 +13,15 @@ end
 package 'emacs'
 
 file '/etc/motd' do
-  content 'This server is the property of Achutha'
+  # accessing the node objects to update the
+  # system info instead of hardcoding.
+  # here we use pound curly brace syntax
+  # to extrac the nod info.
+  content "This server is the property of Achutha
+           HOSTNAME: #{node['hostname']}
+           IPADDRESS: #{node['ipaddress']}
+           CPU: #{node['cpu']['0']['mhz']}
+           MEMORY: #{node['memory']['total']}"
   # default property
   action :create
   owner 'root'
