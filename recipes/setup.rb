@@ -33,6 +33,10 @@ package 'emacs'
 # source file is the one where the content
 # is copied.
 template '/etc/motd' do
+  # we can use variables inside the 
+  # templates as follows.
+  variables(
+     :name => 'achutha')
   source 'motd.erb'
   action :create
 end
