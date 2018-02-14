@@ -41,6 +41,22 @@ template '/etc/motd' do
   action :create
 end
 
+# to add user following resource will be 
+# used
+user 'user2' do
+  comment 'user2'
+  uid '1002'
+  gid '1002'
+  home '/home/user2'
+  shell '/bin/bash'
+end
+
+# to add group following resource will be 
+# used.
+group 'admins1' do
+members 'user2'
+end
+
 service 'ntp' do
   action [ :enable, :start ]
 end
